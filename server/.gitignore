@@ -1,0 +1,9 @@
+# Não subir o .env com variáveis sensíveis
+.env
+
+# Não subir dependências (serão instaladas com npm install)
+node_modules/
+
+# Banco SQLite (se estiver usando SQLite localmente também)
+data/
+*.db
