@@ -1,0 +1,45 @@
+import { Sequelize, DataTypes } from 'sequelize';
+import db from '../config/db.js';
+
+const UserModel = db.define('User', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+    },
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    weight: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+    },
+    height: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+    },
+    age: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+    },
+    photo: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        default: '../uploads/default.png',
+    },
+}, {
+    tableName: 'users',
+    timestamps: true, // Adiciona createdAt e updatedAt
+});
+
+export default UserModel;
