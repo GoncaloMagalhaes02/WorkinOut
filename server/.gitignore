@@ -7,3 +7,7 @@ node_modules/
 # Banco SQLite (se estiver usando SQLite localmente também)
 data/
 *.db
+
+
+uploads/*
+!uploads/.gitkeep
