@@ -13,15 +13,45 @@ import PostsModel from './models/posts.js';
 import LikesModel from './models/likes.js';
 import CommentsModel from './models/comments.js';
 import RemindersModel from './models/reminders.js';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import morgan from 'morgan';
+import cors from 'cors';
+import router from './routes/index.js';
+
+
+
 
 dotenv.config(); // Carrega variáveis do .env
 
 const app = express();
 const PORT = process.env.SERVER_PORT;
 
+const clientURL = "*";
+
+const corsOptions = {
+  origin: clientURL,
+};
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Middleware para exibir logs das solicitações
+app.use(morgan("combined"));
+
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Configuração do diretório de uploads
+app.use('/uploads', express.static(join(__dirname, './uploads')));
+
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
+
+app.use(router);
 
 
 app.listen(PORT, async () => {
@@ -37,3 +67,7 @@ app.listen(PORT, async () => {
 });
 
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(err.status || 500).json({ message: err.message || 'Erro interno no servidor' });
+});
