@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { createUser } from "../controllers/user.js";
+import { loginUser } from "../controllers/user.js";
 import multer from "multer";
 import path from "path";
 import { fileURLToPath } from 'url';
@@ -7,6 +8,7 @@ import { dirname } from 'path';
 import router from "./index.js";
 import fs from "fs";
 import { join } from "path";
+
 
 
 
@@ -36,6 +38,7 @@ const UserRoutes = Router();
 
 UserRoutes.post("/register", upload.single("photo"), createUser);
 
+UserRoutes.post("/login", loginUser);
 
 
 
