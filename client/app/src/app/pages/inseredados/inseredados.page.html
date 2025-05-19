@@ -1,0 +1,47 @@
+<ion-content [fullscreen]="true">
+  <section class="container">
+    <div class="banner">
+      <img src="../../../assets/imgs/WorkinoutLogo.png" />
+    </div>
+    <h1>Insere Dados</h1>
+    <form method="POST">
+      <section id="">
+        <label for="email">Peso</label>
+        <input
+          id="peso"
+          type="number"
+          placeholder="70 Kg"
+          name="peso"
+          required
+        />
+      </section>
+      <section>
+        <label for="dataN">Data de nascimento</label>
+        <input id="dataN" type="date" name="dataNascimento" required />
+      </section>
+      <section>
+        <label for="altura">Altura</label>
+        <input
+          id="altura"
+          type="number"
+          name="altura"
+          placeholder="175 cm"
+          required
+        />
+      </section>
+      <section class="escolherSexo">
+        <div>
+          <input type="checkbox" id="F" name="sexo" value="Feminino" />
+          <label for="F">Feminino</label>
+        </div>
+        <div>
+          <input type="checkbox" id="M" name="sexo" value="Masculino" />
+          <label for="M">Masculino</label>
+        </div>
+        <a>Esqueceu-se da palavra-passe?</a>
+      </section>
+
+      <button color="vermelho">Entrar</button>
+    </form>
+  </section>
+</ion-content>
