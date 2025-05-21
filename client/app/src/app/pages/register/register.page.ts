@@ -9,6 +9,8 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./register.page.scss'],
   standalone: false,
 })
+
+
 export class RegisterPage implements OnInit {
   email: string = '';
   name: string = '';
