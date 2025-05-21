@@ -13,6 +13,7 @@
           placeholder="António Miguel"
           name="name"
           required
+          [(ngModel)]="name"
         />
       </div>
       <div>
@@ -23,11 +24,12 @@
           name="pw"
           placeholder="Palavra-passe"
           required
+          [(ngModel)]="password"
         />
         <a>Esqueceu-se da palavra-passe?</a>
       </div>
 
-      <button color="vermelho">Entrar</button>
+      <button (click)="loginUser()" color="vermelho">Entrar</button>
     </form>
   </section>
 </ion-content>
