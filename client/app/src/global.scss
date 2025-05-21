@@ -40,4 +40,16 @@
 
 * {
   font-family: "Rubik", sans-serif;
+  border: 0;
+  padding: 0;
+}
+
+ion-toolbar {
+  --box-shadow: none;
+  box-shadow: none !important;
+}
+
+ion-header {
+  --box-shadow: none;
+  box-shadow: none !important;
 }
