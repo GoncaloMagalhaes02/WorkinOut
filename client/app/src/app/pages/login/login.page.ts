@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
       next: async (response) => {
         console.log('Login bem-sucedido', response);
         await this.toastSuccess();
-        this.router.navigate(['/home']);
+        this.router.navigate(['/tabs/tab1']);
       },
       error: async (error) => {
         console.error('Erro ao fazer login', error);

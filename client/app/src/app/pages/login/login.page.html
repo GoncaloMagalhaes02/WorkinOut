@@ -4,7 +4,7 @@
       <img src="../../../assets/imgs/WorkinoutLogo.png" />
     </div>
     <h1>Iniciar Sessão</h1>
-    <form method="POST">
+    <form (ngSubmit)="loginUser()">
       <div>
         <label for="name">Nome do Utilizador</label>
         <input
@@ -19,7 +19,7 @@
       <div>
         <label for="pw">Palavra-passe</label>
         <input
-          id="pw"
+          id="password"
           type="password"
           name="pw"
           placeholder="Palavra-passe"
