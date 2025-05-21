@@ -1,17 +1,48 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+    <div id="header">
+      <ion-buttons>
+        <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+        Voltar
+      </ion-buttons>
+      <img src="/assets/imgs/WorkinoutLogo.png" width="80" />
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <header><h1>Plano de Treino</h1></header>
+  <main>
+    <section id="container-lista-treino">
+      <div class="item-lista">
+        <img src="/assets/imgs/WorkinoutLogo.png" width="150" />
+        <div class="info-item">
+          <p class="titulo-info">Supino com Halteres</p>
+          <p>Series: 4</p>
+          <p>Repetições: 10</p>
+          <p>Descanso: 45s</p>
+        </div>
+      </div>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+      <div class="item-lista">
+        <img src="/assets/imgs/WorkinoutLogo.png" width="150" />
+        <div class="info-item">
+          <p class="titulo-info">Supino com Halteres</p>
+          <p>Series: 4</p>
+          <p>Repetições: 10</p>
+          <p>Descanso: 45s</p>
+        </div>
+      </div>
+
+      <div class="item-lista">
+        <img src="/assets/imgs/WorkinoutLogo.png" width="150" />
+        <div class="info-item">
+          <p class="titulo-info">Supino com Halteres</p>
+          <p>Series: 4</p>
+          <p>Repetições: 10</p>
+          <p>Descanso: 45s</p>
+        </div>
+      </div>
+    </section>
+  </main>
 </ion-content>

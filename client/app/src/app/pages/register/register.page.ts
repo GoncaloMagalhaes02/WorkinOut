@@ -22,9 +22,7 @@ export class RegisterPage implements OnInit {
     private toastController: ToastController
   ) {}
 
-  ngOnInit() {
-    // Inicializações se precisares
-  }
+  ngOnInit() {}
 
   async registerUser() {
     const formData = {
