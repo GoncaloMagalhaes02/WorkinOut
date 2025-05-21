@@ -13,6 +13,7 @@
           placeholder="exemplo@gmail.com"
           name="email"
           required
+          [(ngModel)]="email"
         />
       </div>
       <div>
@@ -23,6 +24,7 @@
           placeholder="António Miguel"
           name="name"
           required
+          [(ngModel)]="name"
         />
       </div>
       <div>
@@ -33,11 +35,12 @@
           name="pw"
           placeholder="Palavra-passe"
           required
+          [(ngModel)]="password"
         />
         <a>Esqueceu-se da palavra-passe?</a>
       </div>
+          <button (click)="registerUser()" color="vermelho">Criar Conta</button>
 
-      <button color="vermelho">Entrar</button>
     </form>
   </section>
 </ion-content>

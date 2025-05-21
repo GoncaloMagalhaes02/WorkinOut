@@ -14,7 +14,10 @@ const UserModel = db.define('User', {
     email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
+        unique: true, 
+        validate: {
+            isEmail: true,
+        },
     },
     password: {
         type: DataTypes.STRING,
@@ -35,11 +38,17 @@ const UserModel = db.define('User', {
     photo: {
         type: DataTypes.STRING,
         allowNull: true,
-        default: '../uploads/default.png',
+        defaultValue: '/uploads/default.png', 
     },
 }, {
     tableName: 'users',
-    timestamps: true, // Adiciona createdAt e updatedAt
+    timestamps: true,
+    indexes: [
+        {
+            unique: true,
+            fields: ['email'], 
+        }
+    ]
 });
 
 export default UserModel;
