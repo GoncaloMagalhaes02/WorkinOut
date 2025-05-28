@@ -42,11 +42,11 @@ export const createUser = async (req, res) => {
 }
 
 export const loginUser = async (req, res) => {
-    const { email, password } = req.body;
+    const { name, password } = req.body;
     
     try {
         // Check if user exists
-        const user = await UserModel.findOne({ where: { email } });
+        const user = await UserModel.findOne({ where: { name } });
         if (!user) {
             return res.status(400).json({ message: "Utilizador não encontrado" });
         }
@@ -58,7 +58,7 @@ export const loginUser = async (req, res) => {
         }
     
         // Generate a token
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
             expiresIn: "1h",
         });
     
@@ -67,4 +67,70 @@ export const loginUser = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 }
+
+export const insertData = async (req, res) => {
+
+
+    const {height, weight, age} = req.body;
+    const userId = req.params.user_id;
+
+    // Validate input
+    if (!height || !weight || !age) {
+        return res.status(400).json({ message: "Todos os campos são obrigatórios" });
+    }
+
+    if (typeof height !== 'number' || typeof weight !== 'number' || typeof age !== 'number') {
+        return res.status(400).json({ message: "Altura, peso e idade devem ser números" });
+    }
+
+    if (height <= 0 || weight <= 0 || age <= 0) {
+        return res.status(400).json({ message: "Altura, peso e idade devem ser maiores que zero" });
+    }
+
+
+
+    try {
+        // Check if user exists
+        const user = await UserModel.findByPk(userId);
+        if (!user) {
+            return res.status(404).json({ message: "Utilizador não encontrado" });
+        }
+
+        // Update user data
+        user.height = height;
+        user.weight = weight;
+        user.age = age;
+
+        // Save the updated user
+        await user.save();
+
+        res.status(200).json({ message: "Dados atualizados com sucesso", user });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+
+}
+
+export const getData = async (req, res) => {
+    const userId = req.params.user_id;
+
+    // if user exists
+    if (!userId) {
+        return res.status(400).json({ message: "ID do utilizador é obrigatório" });
+    }
+
+    try {
+        // Check if user exists
+        const user = await UserModel.findByPk(userId);
+        if (!user) {
+            return res.status(404).json({ message: "Utilizador não encontrado" });
+        }
+
+        // Return user data
+        res.status(200).json({ user });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
 

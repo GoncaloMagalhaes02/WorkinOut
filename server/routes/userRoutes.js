@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { createUser } from "../controllers/user.js";
 import { loginUser } from "../controllers/user.js";
+import { insertData } from "../controllers/user.js";
+import { getData } from "../controllers/user.js";
 import multer from "multer";
 import path from "path";
 import { fileURLToPath } from 'url';
@@ -39,6 +41,10 @@ const UserRoutes = Router();
 UserRoutes.post("/register", upload.single("photo"), createUser);
 
 UserRoutes.post("/login", loginUser);
+
+UserRoutes.post("/insertdata/:user_id", insertData);
+
+UserRoutes.get("/getdata/:user_id", getData);
 
 
 
