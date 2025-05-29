@@ -24,7 +24,7 @@ export const createUser = async (req, res) => {
         name,
         email,
         password: hashedPassword,
-        photo: req.file ? `/uploads/${req.file.filename}` : "/uploads/default.png",
+        photo: req.file ? `/uploads/${req.file.filename}` : "/uploads/defaultuser.png",
         });
     
         // Save the user to the database
@@ -117,6 +117,28 @@ export const getUserData = async (req, res) => {
     // if user exists
     if (!userId) {
         return res.status(400).json({ message: "ID do utilizador é obrigatório" });
+    }
+
+    try {
+        // Check if user exists
+        const user = await UserModel.findByPk(userId);
+        if (!user) {
+            return res.status(404).json({ message: "Utilizador não encontrado" });
+        }
+
+        // Return user data
+        res.status(200).json({ user });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
+export const getUserById = async (req, res) => {
+    const userId = req.params.userId;
+
+    //check if user exists
+    if (isNaN(userId)) {
+        return res.status(400).json({ message: "ID do utilizador inválido" });
     }
 
     try {
