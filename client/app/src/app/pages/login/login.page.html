@@ -4,16 +4,15 @@
       <img src="../../../assets/imgs/WorkinoutLogo.png" />
     </div>
     <h1>Iniciar Sessão</h1>
-    <form method="POST">
+    <form [formGroup]="formularioLogin" (ngSubmit)="loginUser()">
       <div>
-        <label for="name">Nome do Utilizador</label>
+        <label for="name">Email</label>
         <input
-          id="name"
+          id="email"
           type="text"
-          placeholder="António Miguel"
-          name="name"
+          placeholder="antonimiguel@gmail.com"
+          formControlName="email"
           required
-          [(ngModel)]="name"
         />
       </div>
       <div>
@@ -22,15 +21,14 @@
           id="pw"
           type="password"
           name="pw"
-          placeholder="Palavra-passe"
+          formControlName="password"
           required
-          [(ngModel)]="password"
         />
         <a>Esqueceu-se da palavra-passe?</a>
         <a routerLink="/register">Não tem conta? Registe uma conta!</a>
       </div>
 
-      <button (click)="loginUser()" color="vermelho">Entrar</button>
+      <button type="submit" color="vermelho">Entrar</button>
     </form>
   </section>
 </ion-content>

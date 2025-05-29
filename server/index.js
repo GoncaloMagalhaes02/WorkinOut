@@ -2,17 +2,15 @@ import express from 'express';
 import dotenv from 'dotenv';
 import db from './config/db.js'; // Importa a instância do Sequelize
 import UserModel from './models/user.js'; // Importa o modelo User
-import GoalsModel from './models/goals.js'; // Importa o modelo Goals
-import UserGoalsModel from './models/userGoals.js';
 import WorkoutPlanModel from './models/workoutPlan.js'; // Importa o modelo WorkoutPlan
 import ExerciseModel from './models/exercise.js';
 import WorkoutPlanExercisesModel from './models/workoutPlanExercises.js';
-import UserWorkoutPlanModel from './models/userWorkoutPlan.js';
 import ProgressPhotosModel from './models/progressPhotos.js';
 import PostsModel from './models/posts.js';
 import LikesModel from './models/likes.js';
 import CommentsModel from './models/comments.js';
 import RemindersModel from './models/reminders.js';
+import ProjectsModel from './models/project.js'; // Importa o modelo Project  
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import morgan from 'morgan';
@@ -42,6 +40,7 @@ app.use(morgan("combined"));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 
 // Configuração do diretório de uploads
 app.use('/uploads', express.static(join(__dirname, './uploads')));

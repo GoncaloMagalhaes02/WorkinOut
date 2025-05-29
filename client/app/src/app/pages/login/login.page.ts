@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,32 +11,49 @@ import { ToastController } from '@ionic/angular';
   standalone: false,
 })
 export class LoginPage implements OnInit {
-  name: string = '';
-  password: string = '';
+  formularioLogin: FormGroup;
 
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private router: Router,
+    private toastController: ToastController
+  ) {
+    this.formularioLogin = this.fb.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+  }
 
-
-  constructor( private http: HttpClient, private router: Router, private toastController: ToastController) {}
-
-  ngOnInit() {}
+  ngOnInit() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.router.navigate(['/tabs/tab1']);
+    }
+  }
 
   async loginUser() {
-    const formData = {
-      name: this.name,
-      password: this.password,
-    };
-
-    this.http.post('http://localhost:3000/users/login', formData).subscribe({
-      next: async (response) => {
-        console.log('Login bem-sucedido', response);
-        await this.toastSuccess();
-        this.router.navigate(['/home']);
-      },
-      error: async (error) => {
-        console.error('Erro ao fazer login', error);
-        await this.toastError();
-      },
-    });
+    if (this.formularioLogin.valid) {
+      const dados = this.formularioLogin.value;
+      console.log(dados);
+      this.http
+        .post<{ token: string; user: any }>(
+          'http://localhost:3000/users/login',
+          dados
+        )
+        .subscribe({
+          next: async (response) => {
+            console.log('Login bem-sucedido', response);
+            await this.toastSuccess();
+            localStorage.setItem('token', response.token); // salva o token no localStorage
+            this.router.navigate(['/tabs/tab1']);
+          },
+          error: async (error) => {
+            console.error('Erro ao fazer login', error);
+            await this.toastError();
+          },
+        });
+    }
   }
 
   async toastSuccess() {
@@ -57,5 +75,4 @@ export class LoginPage implements OnInit {
     });
     toast.present();
   }
-
 }
