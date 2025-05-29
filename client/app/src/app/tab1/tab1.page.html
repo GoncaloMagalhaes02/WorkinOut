@@ -1,13 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> Tab 1 </ion-title>
+    <div id="header">
+      <h1>Página Inicial</h1>
+      <img src="/assets/imgs/WorkinoutLogo.png" width="80" />
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <header id="header">
-    <h1>Página Inicial</h1>
-  </header>
+  <main>
+    <h1>Ir para</h1>
+    <section id="conteudo">
+      <div class="item-conteudo" routerLink="/tabs/tab2">
+        <h1>Treino</h1>
+      </div>
+      <div class="item-conteudo">
+        <h1>Projeto</h1>
+      </div>
+      <div class="item-conteudo">
+        <h1>Evolução</h1>
+      </div>
+      <div class="item-conteudo">
+        <h1>Evolução</h1>
+      </div>
+    </section>
+  </main>
 
-  <main></main>
+  <aside></aside>
 </ion-content>

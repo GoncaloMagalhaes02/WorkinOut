@@ -111,7 +111,7 @@ export const insertData = async (req, res) => {
 
 }
 
-export const getData = async (req, res) => {
+export const getUserData = async (req, res) => {
     const userId = req.params.user_id;
 
     // if user exists
