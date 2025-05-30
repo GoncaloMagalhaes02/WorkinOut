@@ -22,6 +22,11 @@ const routes: Routes = [
     path: 'inseredados',
     loadChildren: () => import('./pages/inseredados/inseredados.module').then( m => m.InseredadosPageModule)
   },
+  {
+    path: 'create-workout-plan',
+    loadChildren: () => import('./pages/create-workout-plan/create-workout-plan.module').then( m => m.CreateWorkoutPlanPageModule)
+  },
+
 ];
 @NgModule({
   imports: [

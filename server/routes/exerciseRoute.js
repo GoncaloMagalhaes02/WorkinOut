@@ -22,5 +22,7 @@ ExerciseRoutes.get('/getWorkoutPlanExercises/:workoutPlanId', getWorkoutPlanExer
 
 
 
+
+
 export default ExerciseRoutes;
 

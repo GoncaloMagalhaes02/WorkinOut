@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <div id="header">
+      <ion-buttons>
+        <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+        Voltar
+      </ion-buttons>
+      <img src="/assets/imgs/WorkinoutLogo.png" width="80" />
+    </div>
+  </ion-toolbar>
+</ion-header>ºº
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">createWorkoutPlan</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<form>
+    <div>
+        <label for="name">Nome do Plano de Treino</label>
+        <input
+          id="name"
+          type="text"
+          placeholder=""
+          name="name"
+         
+        />
+      </div>
+      <div>
+        <label for="pw">Palavra-passe</label>
+        <input
+          id="password"
+          type="password"
+          name="pw"
+          placeholder=""
+         
+         
+        />
+      </div>
+</form>
+
+
+</ion-content>
