@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUser, listaUsers } from "../controllers/user.js";
+import { createUser, getUserProfile, listaUsers } from "../controllers/user.js";
 import { loginUser } from "../controllers/user.js";
 import { insertData } from "../controllers/user.js";
 import { getData } from "../controllers/user.js";
@@ -10,6 +10,7 @@ import { dirname } from "path";
 import router from "./index.js";
 import fs from "fs";
 import { join } from "path";
+import { verifyToken } from "../authMiddleware.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -43,5 +44,7 @@ UserRoutes.post("/insertdata/:user_id", insertData);
 UserRoutes.get("/getdata/:user_id", getData);
 
 UserRoutes.get("/listaUsers", listaUsers);
+
+UserRoutes.get("/getUserProfile/me", verifyToken, getUserProfile);
 
 export default UserRoutes;

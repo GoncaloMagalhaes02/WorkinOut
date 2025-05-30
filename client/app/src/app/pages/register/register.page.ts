@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -10,36 +11,44 @@ import { ToastController } from '@ionic/angular';
   standalone: false,
 })
 export class RegisterPage implements OnInit {
-  email: string = '';
-  name: string = '';
-  password: string = '';
+  formularioRegister: FormGroup;
 
   constructor(
+    private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
     private toastController: ToastController
-  ) {}
+  ) {
+    this.formularioRegister = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.router.navigate(['/tabs/tab1']);
+    }
+  }
 
   async registerUser() {
-    const formData = {
-      email: this.email,
-      name: this.name,
-      password: this.password,
-    };
-
-    this.http.post('http://localhost:3000/users/register', formData).subscribe({
-      next: async (response) => {
-        console.log('Utilizador registado com sucesso', response);
-        await this.toastSuccess();
-        this.router.navigate(['/login']);
-      },
-      error: async (error) => {
-        console.error('Erro ao criar a conta', error);
-        await this.toastError();
-      },
-    });
+    if (this.formularioRegister.valid) {
+      const dados = this.formularioRegister.value;
+      console.log(dados);
+      this.http.post('http://localhost:3000/users/register', dados).subscribe({
+        next: async (response) => {
+          console.log('Utilizador registado com sucesso', response);
+          await this.toastSuccess();
+          this.router.navigate(['/login']);
+        },
+        error: async (error) => {
+          console.error('Erro ao criar a conta', error);
+          await this.toastError();
+        },
+      });
+    }
   }
 
   async toastSuccess() {

@@ -35,7 +35,6 @@ export class LoginPage implements OnInit {
   async loginUser() {
     if (this.formularioLogin.valid) {
       const dados = this.formularioLogin.value;
-      console.log(dados);
       this.http
         .post<{ token: string; user: any }>(
           'http://localhost:3000/users/login',

@@ -1,0 +1,36 @@
+h1 {
+  text-align: center;
+  margin-top: 30px;
+  color: var(--ion-color-azul);
+}
+
+.img-perfil {
+  text-align: center;
+  width: 100%;
+}
+
+.img-perfil img {
+  border-radius: 20px;
+}
+
+.conteudo-perfil {
+  width: 85%;
+  margin: 10px auto;
+}
+
+.conteudo-perfil div {
+  padding: 10px 5px;
+  border-bottom: 1px solid #cfcfcf;
+}
+
+.conteudo-perfil div label {
+  color: var(--ion-color-azul);
+}
+
+.conteudo-perfil div p {
+  margin-top: 5px;
+}
+
+ion-button {
+  margin-top: 50px;
+}

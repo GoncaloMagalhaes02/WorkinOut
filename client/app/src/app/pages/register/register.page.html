@@ -4,27 +4,25 @@
       <img src="../../../assets/imgs/WorkinoutLogo.png" />
     </div>
     <h1>Criar Conta</h1>
-    <form method="POST">
+    <form [formGroup]="formularioRegister" (ngSubmit)="registerUser()">
+      <div>
+        <label for="name">Nome</label>
+        <input
+          id="name"
+          type="text"
+          placeholder="António Miguel"
+          formControlName="name"
+          required
+        />
+      </div>
       <div>
         <label for="email">Email</label>
         <input
           id="email"
           type="text"
-          placeholder="exemplo@gmail.com"
-          name="email"
+          placeholder="antoniomiguel@gmail.com"
+          formControlName="email"
           required
-          [(ngModel)]="email"
-        />
-      </div>
-      <div>
-        <label for="name">Nome do Utilizador</label>
-        <input
-          id="name"
-          type="text"
-          placeholder="António Miguel"
-          name="name"
-          required
-          [(ngModel)]="name"
         />
       </div>
       <div>
@@ -32,15 +30,14 @@
         <input
           id="pw"
           type="password"
-          name="pw"
           placeholder="Palavra-passe"
+          formControlName="password"
           required
-          [(ngModel)]="password"
         />
         <a>Esqueceu-se da palavra-passe?</a>
         <a routerLink="/login">Já tem conta? Iniciar Sessão!</a>
       </div>
-      <button (click)="registerUser()" color="vermelho">Criar Conta</button>
+      <button type="submit" color="vermelho">Criar Conta</button>
     </form>
   </section>
 </ion-content>

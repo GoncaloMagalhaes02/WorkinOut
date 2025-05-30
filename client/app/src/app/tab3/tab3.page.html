@@ -1,17 +1,41 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+    <div id="header">
+      <img src="/assets/imgs/WorkinoutLogo.png" width="80" />
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <h1>Perfil</h1>
+  <main>
+    <section class="img-perfil">
+      <img src="/assets/imgs{{utilizador.photo}}" width="200" />
+    </section>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+    <section *ngIf="utilizador" class="conteudo-perfil">
+      <div>
+        <label>Nome</label>
+        <p>{{utilizador.name}}</p>
+      </div>
+      <div>
+        <label>Email</label>
+        <p>{{utilizador.email}}</p>
+      </div>
+      <div>
+        <label>Idade</label>
+        <p>{{utilizador.age}}</p>
+      </div>
+      <div>
+        <label>Peso</label>
+        <p>{{utilizador.weight}}</p>
+      </div>
+      <ion-button routerLink="/editperfil" expand="full"
+        >Editar Perfil</ion-button
+      >
+      <ion-button (click)="logout()" color="danger" expand="full"
+        >Sair</ion-button
+      >
+    </section>
+  </main>
 </ion-content>

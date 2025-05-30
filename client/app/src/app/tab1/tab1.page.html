@@ -1,15 +1,17 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <div id="header">
-      <h1>Página Inicial</h1>
       <img src="/assets/imgs/WorkinoutLogo.png" width="80" />
+      <ion-button (click)="logout()" color="danger" size="small"
+        >Sair</ion-button
+      >
     </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <main>
-    <h1>Ir para</h1>
+    <h1>Página Inicial</h1>
     <section id="conteudo">
       <div class="item-conteudo" routerLink="/tabs/tab2">
         <h1>Treino</h1>

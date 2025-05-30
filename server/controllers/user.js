@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 export const createUser = async (req, res) => {
-  const { name, email, password, photo } = req.body;
+  const { name, email, password } = req.body;
 
   try {
     // Check if user already exists
@@ -21,9 +21,7 @@ export const createUser = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      photo: req.file
-        ? `/uploads/${req.file.filename}`
-        : "/uploads/default.png",
+      photo: req.file ? `/uploads/${req.file.filename}` : "/default.png",
     });
 
     // Save the user to the database
@@ -143,6 +141,30 @@ export const listaUsers = async (req, res) => {
     res.json(users);
   } catch (error) {
     console.error("Erro ao buscar usuários:", error);
+    res.status(500).json({ error: "Erro interno do servidor" });
+  }
+};
+
+export const getUserProfile = async (req, res) => {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader) {
+    return res.status(401).json({ message: "Token não fornecido" });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await UserModel.findByPk(decoded.id);
+
+    if (!user) {
+      return res.status(404).json({ message: "Utilizador não encontrado" });
+    }
+
+    res.json(user);
+  } catch (error) {
+    console.error("Erro ao buscar utilizador:", error);
     res.status(500).json({ error: "Erro interno do servidor" });
   }
 };

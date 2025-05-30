@@ -28,6 +28,10 @@ const routes: Routes = [
         (m) => m.InseredadosPageModule
       ),
   },
+  {
+    path: 'editperfil',
+    loadChildren: () => import('./pages/editarperfil/editperfil/editperfil.module').then( m => m.EditperfilPageModule)
+  },
 ];
 @NgModule({
   imports: [
