@@ -13,7 +13,7 @@ const WorkoutPlanModel = db.define('WorkoutPlan', {
     },
     description: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
     },
 }, {
     tableName: 'workout_plans',

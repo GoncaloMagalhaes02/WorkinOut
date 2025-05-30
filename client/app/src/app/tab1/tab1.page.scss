@@ -1,12 +1,13 @@
 #header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0 10px;
   color: var(--ion-color-azul);
 }
 
 main > h1 {
-  color: var(--ion-color-vermelho);
+  color: var(--ion-color-azul);
   margin-top: 50px;
   font-weight: bold;
   text-align: center;

@@ -1,19 +1,16 @@
 import { Router } from "express";
-import { createUser } from "../controllers/user.js";
+import { createUser, getUserProfile, listaUsers } from "../controllers/user.js";
 import { loginUser } from "../controllers/user.js";
 import { insertData } from "../controllers/user.js";
-import { getUserData } from "../controllers/user.js";
-import { getUserById } from "../controllers/user.js";
+import { getData } from "../controllers/user.js";
 import multer from "multer";
 import path from "path";
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 import router from "./index.js";
 import fs from "fs";
 import { join } from "path";
-
-
-
+import { verifyToken } from "../authMiddleware.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -31,11 +28,10 @@ const storage = multer.diskStorage({
     const ext = path.extname(file.originalname);
     const uniqueName = Date.now() + ext;
     cb(null, uniqueName);
-  }
+  },
 });
 
 const upload = multer({ storage });
-
 
 const UserRoutes = Router();
 
@@ -45,11 +41,10 @@ UserRoutes.post("/login", loginUser);
 
 UserRoutes.post("/insertdata/:user_id", insertData);
 
-UserRoutes.get("/getdata/:user_id", getUserData);
+UserRoutes.get("/getdata/:user_id", getData);
 
-UserRoutes.get("/getuser/:userId", getUserById);
+UserRoutes.get("/listaUsers", listaUsers);
 
-
-
+UserRoutes.get("/getUserProfile/me", verifyToken, getUserProfile);
 
 export default UserRoutes;

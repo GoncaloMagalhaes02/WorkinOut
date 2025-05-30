@@ -6,14 +6,13 @@
     <h1>Iniciar Sessão</h1>
     <form (ngSubmit)="loginUser()">
       <div>
-        <label for="name">Nome do Utilizador</label>
+        <label for="name">Email</label>
         <input
-          id="name"
+          id="email"
           type="text"
-          placeholder="António Miguel"
-          name="name"
+          placeholder="antonimiguel@gmail.com"
+          formControlName="email"
           required
-          [(ngModel)]="name"
         />
       </div>
       <div>
@@ -22,19 +21,14 @@
           id="password"
           type="password"
           name="pw"
-          placeholder="Palavra-passe"
+          formControlName="password"
           required
-          [(ngModel)]="password"
         />
         <a>Esqueceu-se da palavra-passe?</a>
-<<<<<<< HEAD
         <a link="http://localhost:8100/register">Não tem conta? Registar!</a>
-=======
-        <a routerLink="/register">Não tem conta? Registe uma conta!</a>
->>>>>>> 0b707243ba54c1870a04c8d4b506928f693485b2
       </div>
 
-      <button (click)="loginUser()" color="vermelho">Entrar</button>
+      <button type="submit" color="vermelho">Entrar</button>
     </form>
   </section>
 </ion-content>

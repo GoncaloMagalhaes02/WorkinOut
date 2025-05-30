@@ -53,3 +53,9 @@ ion-header {
   --box-shadow: none;
   box-shadow: none !important;
 }
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}

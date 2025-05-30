@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,6 @@ import { ToastController } from '@ionic/angular';
 export class LoginPage implements OnInit {
   name: string = '';
   password: string = '';
-  
 
 
 
@@ -30,7 +30,7 @@ export class LoginPage implements OnInit {
       next: async (response) => {
         console.log('Login bem-sucedido', response);
         await this.toastSuccess();
-        this.router.navigate(['/tabs/tab1']);
+        this.router.navigate(['/home']);
       },
       error: async (error) => {
         console.error('Erro ao fazer login', error);
@@ -58,5 +58,4 @@ export class LoginPage implements OnInit {
     });
     toast.present();
   }
-
 }
