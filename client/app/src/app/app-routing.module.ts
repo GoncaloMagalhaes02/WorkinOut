@@ -36,6 +36,15 @@ const routes: Routes = [
     path: 'create-workout-plan',
     loadChildren: () => import('./pages/create-workout-plan/create-workout-plan.module').then( m => m.CreateWorkoutPlanPageModule)
   },
+  {
+    path: 'criar-exercicio',
+    loadChildren: () => import('./pages/criar-exercicio/criar-exercicio.module').then( m => m.CriarExercicioPageModule)
+  },
+  {
+    path: 'plano-detalhe-page/:id',
+    loadChildren: () => import('./pages/plano-detalhe-page/plano-detalhe-page.module').then( m => m.PlanoDetalhePagePageModule)
+  },
+
 
 ];
 @NgModule({

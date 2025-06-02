@@ -38,7 +38,7 @@ export const getAllExercises = async (req, res) => {
 export const createWorkoutPlan = async (req, res) => {
     const { name, description } = req.body;
 
-    if (!name || !description) {
+    if (!name) {
         return res.status(400).json({ message: "Precisa de preencher todos os campos" });
     }
 
@@ -112,7 +112,67 @@ export const getWorkoutPlanExercises = async (req, res) => {
     }
 }
 
+export const getAllWorkoutPlans = async (req, res) => {
+    try {
+        const workoutPlans = await WorkoutPlanModel.findAll();
+        res.status(200).json(workoutPlans);
+    } catch (error) {
+        console.error("Error fetching workout plans:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+}
+
+export const deleteWorkoutPlan = async (req, res) => {
+  const { workoutPlanId } = req.params;
+
+  if (!workoutPlanId || isNaN(workoutPlanId)) {
+    return res.status(400).json({ message: "ID do Plano de Treino inválido" });
+  }
+
+  try {
+    // Apagar primeiro as associações com os exercícios
+    await WorkoutPlanExercisesModel.destroy({
+      where: { workoutPlanId }
+    });
+
+    // Agora apagar o plano de treino
+    const deletedWorkoutPlan = await WorkoutPlanModel.destroy({
+      where: { id: workoutPlanId },
+    });
+
+    if (deletedWorkoutPlan) {
+      res.status(200).json({ message: "Plano de Treino eliminado com sucesso" });
+    } else {
+      res.status(404).json({ message: "Plano de Treino não encontrado" });
+    }
+  } catch (error) {
+    console.error("Erro ao apagar plano de treino:", error);
+    res.status(500).json({ message: "Erro interno ao apagar plano de treino" });
+  }
+}
 
 
+export const deleteExercise = async (req, res) => {
+    const { exerciseId } = req.params;
+
+    if (!exerciseId || isNaN(exerciseId)) {
+        return res.status(400).json({ message: "ID do Exercício inválido" });
+    }
+
+    try {
+        const deletedExercise = await ExerciseModel.destroy({
+            where: { id: exerciseId },
+        });
+
+        if (deletedExercise) {
+            res.status(200).json({ message: "Exercício eliminado com sucesso" });
+        } else {
+            res.status(404).json({ message: "Exercício não encontrado" });
+        }
+    } catch (error) {
+        console.error("Error deleting exercise:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+}
 
 

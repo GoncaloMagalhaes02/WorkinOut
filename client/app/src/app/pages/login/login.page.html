@@ -4,9 +4,9 @@
       <img src="../../../assets/imgs/WorkinoutLogo.png" />
     </div>
     <h1>Iniciar Sessão</h1>
-    <form (ngSubmit)="loginUser()">
+    <form [formGroup]="formularioLogin" (ngSubmit)="loginUser()">
       <div>
-        <label for="name">Email</label>
+        <label for="email">Email</label>
         <input
           id="email"
           type="text"
@@ -20,12 +20,13 @@
         <input
           id="password"
           type="password"
-          name="pw"
+          name="password"
+          placeholder="********"
           formControlName="password"
           required
         />
         <a>Esqueceu-se da palavra-passe?</a>
-        <a link="http://localhost:8100/register">Não tem conta? Registar!</a>
+        <a routerLink="/register">Não tem conta? Registar!</a>
       </div>
 
       <button type="submit" color="vermelho">Entrar</button>

@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <div id="header">
+      <ion-buttons>
+        <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+        Voltar
+      </ion-buttons>
+      <img src="/assets/imgs/WorkinoutLogo.png" width="80" />
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">criar-exercicio</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-title class="ion-padding">Criar Exercício</ion-title>
+<div class="ion-padding">
+  <p>Crie exercícios para adicionares aos teus planos de treino</p>
+</div>
+
+<form class="createExercise"[formGroup]="createExerciseForm" (ngSubmit)="createExercise()" >
+  <label for="name">Nome do Exercicio</label>
+  <input type="text" placeholder="Ex: Supino Reto" formControlName="name" name="name"  required /> 
+  
+  <label for="name">Descrição</label>
+  <input type="text" placeholder="Ex: 3 séries de 10 repetições" formControlName="description" />
+  <ion-button expand="block" type="submit" class="ion-margin">Criar Exercício</ion-button>
+</form>
+
+
+
+
+</ion-content>

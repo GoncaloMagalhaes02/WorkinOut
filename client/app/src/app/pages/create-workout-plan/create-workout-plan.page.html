@@ -8,7 +8,7 @@
       <img src="/assets/imgs/WorkinoutLogo.png" width="80" />
     </div>
   </ion-toolbar>
-</ion-header>ºº
+</ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -17,29 +17,24 @@
     </ion-toolbar>
   </ion-header>
 
-<form>
-    <div>
-        <label for="name">Nome do Plano de Treino</label>
-        <input
-          id="name"
-          type="text"
-          placeholder=""
-          name="name"
-         
-        />
-      </div>
-      <div>
-        <label for="pw">Palavra-passe</label>
-        <input
-          id="password"
-          type="password"
-          name="pw"
-          placeholder=""
-         
-         
-        />
-      </div>
-</form>
+  <ion-title class="ion-padding">Criar Plano de Treino</ion-title>
+  <div class="ion-padding">
+    <p>Crie um plano de treino para organizar seus exercícios.</p>
+  </div>
 
+  <form [formGroup]="createWorkoutPlanForm" (ngSubmit)="createWorkoutPlan()" class="ion-padding">
+    <ion-item>
+      <ion-label position="stacked">Nome do Plano</ion-label>
+      <ion-input type="text" placeholder="Ex: Treino de Perna" formControlName="name"></ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label position="stacked">Descrição</ion-label>
+      <ion-input type="text" placeholder="Descrição (Opcional)" formControlName="description"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" class="ion-margin" [disabled]="createWorkoutPlanForm.invalid">
+      Criar Plano
+    </ion-button>
+  </form>
 </ion-content>

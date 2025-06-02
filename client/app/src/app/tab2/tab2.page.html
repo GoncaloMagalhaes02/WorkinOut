@@ -1,46 +1,39 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <div id="header">
-      <ion-buttons>
-        <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
-        Voltar
-      </ion-buttons>
       <img src="/assets/imgs/WorkinoutLogo.png" width="80" />
     </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <header><h1>Plano de Treino</h1></header>
+  <header><h1>Planos de Treino</h1></header>
   <main>
     <section id="container-lista-treino">
-      <div class="item-lista">
-        <img src="/assets/imgs/WorkinoutLogo.png" width="150" />
-        <div class="info-item">
-          <p class="titulo-info">Supino com Halteres</p>
-          <p>Series: 4</p>
-          <p>Repetições: 10</p>
-          <p>Descanso: 45s</p>
+
+  <ion-list>
+    <ion-item *ngFor="let plan of workoutPlans">
+      <ion-label>
+        <div class="div-icon">
+         <h2>{{ plan.name }}</h2>
         </div>
-      </div>
-
-  <div class="plan-list">
-    <ion-list>
-      <ion-item>
-        <ion-label>
-          <h2>Treino de perna</h2>
-          <p>descrição</p>
-        </ion-label>
-      </ion-item>
-    </ion-list>
-  </div>
-
+        <p>{{ plan.description || 'Sem descrição' }}</p>
+      </ion-label>
+      <ion-button slot="end" [routerLink]="['/plano-detalhe-page', plan.id]">
+        Ver Detalhes
+      </ion-button>
+    </ion-item>
+  </ion-list>
   
 
   
 
 <ion-button expand="full" routerLink="/create-workout-plan">
     Criar Plano de Treino
+  </ion-button>
+
+<ion-button expand="full" routerLink="/criar-exercicio">
+    Criar um Exercício
   </ion-button>
 
  </section>

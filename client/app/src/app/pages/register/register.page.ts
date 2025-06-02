@@ -10,10 +10,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register.page.scss'],
   standalone: false,
 })
-
-
 export class RegisterPage implements OnInit {
   formularioRegister: FormGroup;
+  selectedFile: File | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -23,7 +22,7 @@ export class RegisterPage implements OnInit {
   ) {
     this.formularioRegister = this.fb.group({
       name: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
   }
@@ -35,11 +34,27 @@ export class RegisterPage implements OnInit {
     }
   }
 
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+    }
+  }
+
   async registerUser() {
     if (this.formularioRegister.valid) {
-      const dados = this.formularioRegister.value;
-      console.log(dados);
-      this.http.post('http://localhost:3000/users/register', dados).subscribe({
+      const formValues = this.formularioRegister.value;
+      const formData = new FormData();
+
+      formData.append('name', formValues.name);
+      formData.append('email', formValues.email);
+      formData.append('password', formValues.password);
+
+      if (this.selectedFile) {
+        formData.append('photo', this.selectedFile);
+      }
+
+      this.http.post('http://localhost:3000/users/register', formData).subscribe({
         next: async (response) => {
           console.log('Utilizador registado com sucesso', response);
           await this.toastSuccess();

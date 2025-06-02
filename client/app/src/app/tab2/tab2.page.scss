@@ -23,3 +23,9 @@ header h1 {
   font-weight: 100;
   color: var(--ion-color-azul);
 }
+
+ion-button {
+  --background: var(--ion-color-azul);
+  --color: white;
+  margin-top: 10px;
+}
