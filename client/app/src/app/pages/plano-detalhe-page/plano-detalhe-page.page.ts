@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { WorkoutService } from '../../services/workout-service';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-plano-detalhe-page',
@@ -24,7 +26,8 @@ export class PlanoDetalhePagePage implements OnInit {
     private route: ActivatedRoute,
     private workoutService: WorkoutService,
     private toastController: ToastController,
-    private router: Router
+    private router: Router,
+    private alertController: AlertController
     
   ) {}
 
@@ -92,27 +95,90 @@ export class PlanoDetalhePagePage implements OnInit {
     });
   }
 
-  deleteWorkoutPlan(){
-    this.workoutService.deleteWorkoutPlan(this.planId).subscribe({
-      next: async () => {
-        const toast = await this.toastController.create({
-          message: 'Plano de treino excluído com sucesso!',
-          duration: 2000,
-          color: 'success',
-          position: 'bottom'
-        });
-        toast.present();
-        this.router.navigate(['/tabs/tab2']);
+  async deleteWorkoutPlan() {
+  const alert = await this.alertController.create({
+    header: 'Confirmar',
+    message: 'Tens a certeza que queres apagar este plano de treino?',
+    buttons: [
+      {
+        text: 'Cancelar',
+        role: 'cancel'
       },
-      error: async () => {
-        const toast = await this.toastController.create({
-          message: 'Erro ao excluir plano de treino.',
-          duration: 2000,
-          color: 'danger',
-          position: 'bottom'
-        });
-        toast.present();
+      {
+        text: 'Apagar',
+        role: 'destructive',
+        handler: () => {
+          this.workoutService.deleteWorkoutPlan(this.planId).subscribe({
+            next: async () => {
+              const toast = await this.toastController.create({
+                message: 'Plano de treino excluído com sucesso!',
+                duration: 2000,
+                color: 'success',
+                position: 'bottom'
+              });
+              toast.present();
+              this.router.navigate(['/tabs/tab2']);
+            },
+            error: async () => {
+              const toast = await this.toastController.create({
+                message: 'Erro ao excluir plano de treino.',
+                duration: 2000,
+                color: 'danger',
+                position: 'bottom'
+              });
+              toast.present();
+            }
+          });
+        }
       }
-    });
-  }
+    ]
+  });
+
+  await alert.present();
+}
+
+
+ async deleteExerciseFromPlan(workoutPlanId: number, exerciseId: number) {
+  const alert = await this.alertController.create({
+    header: 'Confirmar',
+    message: 'Tens a certeza que queres remover este exercício do plano?',
+    buttons: [
+      {
+        text: 'Cancelar',
+        role: 'cancel'
+      },
+      {
+        text: 'Remover',
+        role: 'destructive',
+        handler: () => {
+          this.workoutService.deleteWorkoutPlanExercise(workoutPlanId, exerciseId).subscribe({
+            next: async () => {
+              this.loadExercises(); // Atualiza lista
+              const toast = await this.toastController.create({
+                message: 'Exercício removido do plano com sucesso!',
+                duration: 2000,
+                color: 'success',
+                position: 'bottom'
+              });
+              toast.present();
+            },
+            error: async () => {
+              const toast = await this.toastController.create({
+                message: 'Erro ao remover exercício do plano.',
+                duration: 2000,
+                color: 'danger',
+                position: 'bottom'
+              });
+              toast.present();
+            }
+          });
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
+
+
 }

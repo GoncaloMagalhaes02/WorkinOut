@@ -7,6 +7,7 @@ import { getWorkoutPlanExercises } from '../controllers/exercise.js';
 import { getAllWorkoutPlans } from '../controllers/exercise.js';
 import { deleteExercise } from '../controllers/exercise.js';
 import { deleteWorkoutPlan } from '../controllers/exercise.js';
+import { deleteWorkoutPlanExercise } from '../controllers/exercise.js';
 
 
 
@@ -28,6 +29,8 @@ ExerciseRoutes.get('/getAllWorkoutPlans', getAllWorkoutPlans);
 ExerciseRoutes.delete('/deleteExercise/:exerciseId', deleteExercise);
 
 ExerciseRoutes.delete('/deleteWorkoutPlan/:workoutPlanId', deleteWorkoutPlan);
+
+ExerciseRoutes.delete('/deleteWorkoutPlanExercise/:workoutPlanId/:exerciseId', deleteWorkoutPlanExercise);
 
 
 

@@ -43,7 +43,7 @@ export class CriarExercicioPage implements OnInit {
       this.workoutService.createExercise(exercise).subscribe({
         next: async () => {
           await this.toastSuccess();
-          this.router.navigate(['/tabs/tab1']); // ou onde quiseres redirecionar
+          this.router.navigate(['/tabs/tab2']); 
         },
         error: async () => {
           await this.toastError();

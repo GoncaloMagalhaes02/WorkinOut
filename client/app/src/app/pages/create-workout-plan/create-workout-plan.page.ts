@@ -38,7 +38,8 @@ export class CreateWorkoutPlanPage implements OnInit {
       this.workoutService.createWorkoutPlan(plano).subscribe({
         next: async () => {
           await this.toastSucess();
-          this.router.navigate(['/tabs/tab1']); // Ou onde quiseres redirecionar
+          this.router.navigate(['/tabs/tab2']); 
+          
         },
         error: async () => {
           await this.toastError();

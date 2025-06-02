@@ -151,7 +151,6 @@ export const deleteWorkoutPlan = async (req, res) => {
   }
 }
 
-
 export const deleteExercise = async (req, res) => {
     const { exerciseId } = req.params;
 
@@ -174,5 +173,33 @@ export const deleteExercise = async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 }
+
+export const deleteWorkoutPlanExercise = async (req, res) => {
+  const { workoutPlanId, exerciseId } = req.params;
+
+  if (!workoutPlanId || !exerciseId || isNaN(workoutPlanId) || isNaN(exerciseId)) {
+    return res.status(400).json({ message: "IDs inválidos" });
+  }
+
+  try {
+    const deleted = await WorkoutPlanExercisesModel.destroy({
+      where: {
+        workoutPlanId,
+        exerciseId
+      }
+    });
+
+    if (deleted) {
+      res.status(200).json({ message: "Exercício removido do plano com sucesso" });
+    } else {
+      res.status(404).json({ message: "Associação não encontrada" });
+    }
+  } catch (error) {
+    console.error("Erro ao remover exercício do plano:", error);
+    res.status(500).json({ message: "Erro interno do servidor" });
+  }
+};
+
+
 
 

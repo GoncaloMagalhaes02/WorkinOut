@@ -14,9 +14,14 @@
 
   <ion-list *ngIf="exercises.length > 0">
   <ion-item *ngFor="let item of exercises">
-    <ion-label>
+    <ion-label class="label">
       <h3>{{ item.exercise.name }}</h3>
       <p>{{ item.exercise.description || 'Sem descrição' }}</p>
+      <ion-icon 
+          name="trash-outline" 
+           class="trash" 
+          (click)="deleteExerciseFromPlan(item.workoutPlanId, item.exerciseId)">
+      </ion-icon>
     </ion-label>
   </ion-item>
 </ion-list>
@@ -32,8 +37,13 @@
     </ion-select>
   </ion-item>
 
+
   <ion-button expand="block" class="ion-margin-top" (click)="associateExercise()" [disabled]="!selectedExerciseId">
     Associar Exercício
+  </ion-button>
+
+   <ion-button expand="full" routerLink="/criar-exercicio">
+    Criar um Exercício
   </ion-button>
 
   <ion-button expand="block" class="ion-margin-top" color="danger" (click)="deleteWorkoutPlan()">
