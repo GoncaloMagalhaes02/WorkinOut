@@ -11,27 +11,31 @@
   <main>
     <section id="container-lista-treino">
 
-  <ion-list>
-    <ion-item *ngFor="let plan of workoutPlans">
-      <ion-label>
-        <div class="div-icon">
-         <h2>{{ plan.name }}</h2>
-        </div>
-        <p>{{ plan.description || 'Sem descrição' }}</p>
-      </ion-label>
-      <ion-button slot="end" [routerLink]="['/plano-detalhe-page', plan.id]">
-        Ver Detalhes
-      </ion-button>
-    </ion-item>
-  </ion-list>
-  
+  <ng-container *ngIf="workoutPlans.length > 0; else noPlans">
+    <ion-list>
+      <ion-item *ngFor="let plan of workoutPlans">
+        <ion-label>
+          <div class="div-icon">
+            <h2>{{ plan.name }}</h2>
+          </div>
+          <p>{{ plan.description || 'Sem descrição' }}</p>
+        </ion-label>
+        <ion-button slot="end" [routerLink]="['/plano-detalhe-page', plan.id]">
+          Ver Detalhes
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </ng-container>
 
-  
+  <ng-template #noPlans>
+    <ion-text color="medium">
+      <p style="text-align: center; margin-top: 2rem;">Não tens nenhum plano de treino.</p>
+    </ion-text>
+  </ng-template>
 
-<ion-button expand="full" routerLink="/create-workout-plan">
+  <ion-button expand="full" routerLink="/create-workout-plan">
     Criar Plano de Treino
   </ion-button>
-
 
 
  </section>

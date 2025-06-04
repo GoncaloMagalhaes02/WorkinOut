@@ -10,7 +10,7 @@
   <h1>Perfil</h1>
   <main>
     <section class="img-perfil">
-      <img [src]="'http://localhost:3000' + utilizador.photo" width="200" />
+      <img [src]="utilizador.photo ? 'http://localhost:3000' + utilizador.photo : 'assets/imgs/defaultuser.png'" width="200">
     </section>
 
     <section *ngIf="utilizador" class="conteudo-perfil">

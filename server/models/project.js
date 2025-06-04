@@ -36,10 +36,6 @@ const ProjectModel = db.define('Project', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    workoutPlan_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
     peso_inicial: {
         type: DataTypes.FLOAT,
         allowNull: false,
@@ -57,10 +53,6 @@ const ProjectModel = db.define('Project', {
 ProjectModel.belongsTo(UserModel, {
     foreignKey: 'user_id',
     as: 'user'
-});
-ProjectModel.belongsTo(WorkoutPlanModel, {
-    foreignKey: 'workoutPlan_id',
-    as: 'workoutPlan'
 });
 
 // Definindo o relacionamento entre Project e ProgressPhotos

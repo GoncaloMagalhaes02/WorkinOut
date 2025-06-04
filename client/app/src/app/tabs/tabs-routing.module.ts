@@ -35,12 +35,7 @@ const routes: Routes = [
     path: '',
     redirectTo: '/tabs/tab1',
     pathMatch: 'full'
-  },
-  {
-    path: 'projetos',
-    loadChildren: () => import('./projetos/projetos.module').then( m => m.ProjetosPageModule)
   }
-
 ];
 
 @NgModule({

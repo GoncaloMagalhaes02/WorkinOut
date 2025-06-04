@@ -1,6 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>projetos</ion-title>
+    <div id="header">
+      <img src="/assets/imgs/WorkinoutLogo.png" width="80" />
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -10,4 +12,42 @@
       <ion-title size="large">projetos</ion-title>
     </ion-toolbar>
   </ion-header>
+
+ <header><h1>Projetos</h1></header>
+
+<ng-container *ngIf="projetos.length > 0; else semProjetos">
+  <ion-card *ngFor="let projeto of projetos">
+  <ion-card-header>
+    <ion-card-subtitle>{{ projeto.status }}</ion-card-subtitle>
+    <ion-card-title>{{ projeto.name }}</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content class="content">
+    {{ projeto.description }}
+  </ion-card-content>
+
+ 
+    <ion-button fill="clear" color="primary">
+      Ver detalhes
+    </ion-button>
+    <ion-button fill="clear" color="danger" >
+      Eliminar
+    </ion-button>
+
+</ion-card>
+
+  
+</ng-container>
+
+<ng-template #semProjetos>
+  <ion-text color="medium">
+    <p style="text-align: center; margin-top: 2rem;">Ainda não tens nenhum projeto.</p>
+  </ion-text>
+</ng-template>
+
+
+
+
+
+
 </ion-content>

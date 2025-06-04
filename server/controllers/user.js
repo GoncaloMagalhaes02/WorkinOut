@@ -21,7 +21,7 @@ export const createUser = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      photo: req.file ? `/uploads/${req.file.filename}` : "/default.png",
+      photo: req.file ? `/uploads/${req.file.filename}` : "/defaultuser.png",
     });
 
     // Save the user to the database
