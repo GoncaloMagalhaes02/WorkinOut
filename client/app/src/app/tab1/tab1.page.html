@@ -2,28 +2,20 @@
   <ion-toolbar>
     <div id="header">
       <img src="/assets/imgs/WorkinoutLogo.png" width="80" />
-      <ion-button (click)="logout()" color="danger" size="small"
-        >Sair</ion-button
-      >
     </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <main>
-    <h1>Página Inicial</h1>
+    <h1>O que fazer</h1>
     <section id="conteudo">
-      <div class="item-conteudo" routerLink="/tabs/tab2">
-        <h1>Treino</h1>
+      <div class="item-conteudo treinar" routerLink="/tabs/tab2">
+        <h1>Treinar</h1>
       </div>
-      <div class="item-conteudo">
-        <h1>Projeto</h1>
-      </div>
-      <div class="item-conteudo">
-        <h1>Evolução</h1>
-      </div>
-      <div class="item-conteudo">
-        <h1>Evolução</h1>
+      <div class="item-conteudo projeto" routerLink="/"><h1>Projeto</h1></div>
+      <div class="item-conteudo perfil" routerLink="/tabs/tab3">
+        <h1>Perfil</h1>
       </div>
     </section>
   </main>

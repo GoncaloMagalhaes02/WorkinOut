@@ -11,6 +11,7 @@ import router from "./index.js";
 import fs from "fs";
 import { join } from "path";
 import { verifyToken } from "../authMiddleware.js";
+import { atualizarDados } from "../controllers/user.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -46,5 +47,7 @@ UserRoutes.get("/getdata/:user_id", getData);
 UserRoutes.get("/listaUsers", listaUsers);
 
 UserRoutes.get("/getUserProfile/me", verifyToken, getUserProfile);
+
+UserRoutes.post("/atualizaUser", verifyToken, atualizarDados);
 
 export default UserRoutes;

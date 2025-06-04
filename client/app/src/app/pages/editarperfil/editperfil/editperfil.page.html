@@ -5,15 +5,57 @@
         <ion-back-button defaultHref="/tabs/tab3"></ion-back-button>
         Voltar
       </ion-buttons>
-      <img src="/assets/imgs/WorkinoutLogo.png" width="80" />
     </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">editperfil</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <form [formGroup]="formularioEdit" (ngSubmit)="salvar()">
+    <section class="img-perfil">
+      <img  [src]="'http://localhost:3000' + utilizador.photo" width="200" />
+    </section>
+    <div>
+      <label for="name">Nome</label>
+      <input id="name" type="text" formControlName="name" readonly />
+    </div>
+    <div>
+      <label for="age">Idade</label>
+      <input id="age" type="number" formControlName="age" required />
+      <ion-note color="danger" *ngIf="isInvalid('age')">
+        <span *ngIf="formularioEdit.get('age')?.hasError('required')">
+          Idade é obrigatória.
+        </span>
+        <span *ngIf="formularioEdit.get('age')?.hasError('min')">
+          Idade deve ser maior que zero.
+        </span>
+      </ion-note>
+    </div>
+    <div>
+      <label for="height">Altura em cm</label>
+      <input id="height" type="number" formControlName="height" required />
+      <ion-note color="danger" *ngIf="isInvalid('height')">
+        <span *ngIf="formularioEdit.get('height')?.hasError('required')">
+          Altura é obrigatória.
+        </span>
+        <span *ngIf="formularioEdit.get('height')?.hasError('min')">
+          Altura deve ser maior que zero.
+        </span>
+      </ion-note>
+    </div>
+    <div>
+      <label for="peso">Peso em kg</label>
+      <input id="weight" type="number" formControlName="weight" required />
+      <ion-note color="danger" *ngIf="isInvalid('weight')">
+        <span *ngIf="formularioEdit.get('weight')?.hasError('required')">
+          Peso é obrigatório.
+        </span>
+        <span *ngIf="formularioEdit.get('weight')?.hasError('min')">
+          Peso deve ser maior que zero.
+        </span>
+      </ion-note>
+    </div>
+    <button type="submit" color="vermelho" [disabled]="formularioEdit.invalid">
+      Atualizar
+    </button>
+  </form>
 </ion-content>

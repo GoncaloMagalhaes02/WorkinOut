@@ -7,13 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { EditperfilPageRoutingModule } from './editperfil-routing.module';
 
 import { EditperfilPage } from './editperfil.page';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EditperfilPageRoutingModule
+    EditperfilPageRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [EditperfilPage]
 })

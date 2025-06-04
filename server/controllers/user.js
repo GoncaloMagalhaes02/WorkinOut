@@ -168,3 +168,30 @@ export const getUserProfile = async (req, res) => {
     res.status(500).json({ error: "Erro interno do servidor" });
   }
 };
+
+export const atualizarDados = async (req, res) => {
+  const userId = req.user.id;
+  const { name, age, weight, height } = req.body;
+
+  try {
+    const user = await UserModel.findByPk(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Atualiza apenas se os campos forem fornecidos
+    user.name = name ?? user.name;
+    user.age = age ?? user.age;
+    user.weight = weight ?? user.weight;
+    user.height = height ?? user.height;
+
+    await user.save();
+
+    const { password, ...userWithoutPassword } = user.toJSON();
+    res.status(200).json(userWithoutPassword);
+  } catch (error) {
+    console.error("Error updating user:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
