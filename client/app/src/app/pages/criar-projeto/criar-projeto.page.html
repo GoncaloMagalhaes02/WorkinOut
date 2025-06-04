@@ -1,0 +1,90 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <div id="header">
+      <ion-buttons>
+        <ion-back-button defaultHref="/tabs/tab3"></ion-back-button>
+        Voltar
+      </ion-buttons>
+      <img src="/assets/imgs/WorkinoutLogo.png" width="80" />
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <h1>Criação do Projeto</h1>
+
+  <form (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">Nome do Projeto</label>
+      <input
+        id="name"
+        type="text"
+        [(ngModel)]="project.name"
+        name="name"
+        placeholder="Ex: Projeto Verão"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="description">Descrição</label>
+      <input
+        id="description"
+        type="text"
+        [(ngModel)]="project.description"
+        name="description"
+        placeholder="Ex: Projeto para emagrecer 5kg"
+      />
+    </div>
+
+    <div>
+      <label for="data_inicio">Data Início</label>
+      <input
+        id="data_inicio"
+        type="date"
+        [(ngModel)]="project.data_inicio"
+        name="data_inicio"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="data_fim">Data Fim</label>
+      <input
+        id="data_fim"
+        type="date"
+        [(ngModel)]="project.data_fim"
+        name="data_fim"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="peso_inicial">Peso Inicial em kg</label>
+      <input
+        id="peso_inicial"
+        type="number"
+        [(ngModel)]="project.peso_inicial"
+        name="peso_inicial"
+        placeholder="Ex: 70"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="peso_final">Peso Final em kg (Objetivo final)</label>
+      <input
+        id="peso_final"
+        type="number"
+        [(ngModel)]="project.peso_final"
+        name="peso_final"
+        placeholder="Ex: 65"
+        required
+      />
+    </div>
+
+    <ion-button expand="block" type="submit">
+      Criar Projeto
+    </ion-button>
+  </form>
+</ion-content>

@@ -1,0 +1,51 @@
+h1 {
+  margin-top: 50px;
+  color: var(--ion-color-azul);
+  text-align: center;
+}
+
+form {
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+form div {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  margin: 20px 0;
+  text-align: left;
+}
+
+form div label {
+  margin: 10px 0;
+  color: var(--ion-color-azul);
+}
+
+form div input {
+  border-radius: 15px;
+  padding: 7px;
+  border: 0.2px solid #03466e;
+}
+
+input::placeholder {
+  opacity: 0.5;
+  font-size: 0.8rem;
+}
+
+form button {
+  width: 137px;
+  height: 44px;
+  background-color: var(--ion-color-vermelho);
+  border-radius: 1rem;
+  border: 0;
+  color: #fff;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

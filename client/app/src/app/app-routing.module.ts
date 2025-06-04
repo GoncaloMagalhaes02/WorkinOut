@@ -43,7 +43,11 @@ const routes: Routes = [
   {
     path: 'plano-detalhe-page/:id',
     loadChildren: () => import('./pages/plano-detalhe-page/plano-detalhe-page.module').then( m => m.PlanoDetalhePagePageModule)
+  },  {
+    path: 'criar-projeto',
+    loadChildren: () => import('./pages/criar-projeto/criar-projeto.module').then( m => m.CriarProjetoPageModule)
   },
+
 
 
 ];

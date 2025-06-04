@@ -17,6 +17,10 @@ export class ProjectosService {
         return this.http.get(`${this.apiUrl}/getProjectsbyUser/${userId}`);
     }
 
+    createProject(project: any): Observable<any> {
+        return this.http.post(`${this.apiUrl}/createProject`, project);
+    }
+
     
 
 }

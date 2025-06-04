@@ -7,15 +7,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div class="content-page">
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">projetos</ion-title>
-    </ion-toolbar>
+
   </ion-header>
 
  <header><h1>Projetos</h1></header>
 
-<ng-container *ngIf="projetos.length > 0; else semProjetos">
+<ng-container *ngIf="projetos.length > 0; else semProjetos" class="container">
   <ion-card *ngFor="let projeto of projetos">
   <ion-card-header>
     <ion-card-subtitle>{{ projeto.status }}</ion-card-subtitle>
@@ -30,7 +29,7 @@
     <ion-button fill="clear" color="primary">
       Ver detalhes
     </ion-button>
-    <ion-button fill="clear" color="danger" >
+    <ion-button fill="clear" color="danger">
       Eliminar
     </ion-button>
 
@@ -45,9 +44,13 @@
   </ion-text>
 </ng-template>
 
+<ion-button class="criar-p" expand="full" color="primary" routerLink="/criar-projeto">
+  Criar Projeto
+</ion-button>
 
 
 
+</div>
 
 
 </ion-content>

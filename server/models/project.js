@@ -30,7 +30,7 @@ const ProjectModel = db.define('Project', {
     },
     status: {
         type: DataTypes.ENUM('em andamento', 'concluído', 'cancelado'),
-        allowNull: false,
+        allowNull: true,
     },
     user_id: {
         type: DataTypes.INTEGER,
