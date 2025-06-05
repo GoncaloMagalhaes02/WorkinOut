@@ -47,6 +47,10 @@ const routes: Routes = [
     path: 'criar-projeto',
     loadChildren: () => import('./pages/criar-projeto/criar-projeto.module').then( m => m.CriarProjetoPageModule)
   },
+  {
+    path: 'projeto-evolucao',
+    loadChildren: () => import('./pages/projeto-evolucao/projeto-evolucao.module').then( m => m.ProjetoEvolucaoPageModule)
+  },
 
 
 

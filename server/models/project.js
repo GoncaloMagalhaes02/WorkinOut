@@ -1,8 +1,6 @@
 import { Sequelize, DataTypes } from "sequelize";
 import db from "../config/db.js";
-import WorkoutPlanModel from "./workoutPlan.js"; // Importa o modelo WorkoutPlan
 import UserModel from "./user.js"; // Importa o modelo User
-import ProgressPhotosModel from "./progressPhotos.js"; // Importa o modelo ProgressPhotos
 
 
 
@@ -55,11 +53,7 @@ ProjectModel.belongsTo(UserModel, {
     as: 'user'
 });
 
-// Definindo o relacionamento entre Project e ProgressPhotos
-ProjectModel.hasMany(ProgressPhotosModel, {
-    foreignKey: 'project_id',
-    as: 'progressPhotos'
-}); 
+
 
 
 export default ProjectModel;
