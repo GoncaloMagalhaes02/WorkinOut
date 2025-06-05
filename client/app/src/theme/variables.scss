@@ -1,6 +1,34 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
 :root {
-  --ion-color-vermelho: #dd3f43;
   --ion-color-azul: #03466e;
+  --ion-color-azul-rgb: 3, 70, 110;
+  --ion-color-azul-contrast: #ffffff;
+  --ion-color-azul-contrast-rgb: 255, 255, 255;
+  --ion-color-azul-shade: #033e61;
+  --ion-color-azul-tint: #1c597d;
+  --ion-color-vermelho: #dd3f43;
+  --ion-color-vermelho-rgb: 221, 63, 67;
+  --ion-color-vermelho-contrast: #000000;
+  --ion-color-vermelho-contrast-rgb: 0, 0, 0;
+  --ion-color-vermelho-shade: #c2373b;
+  --ion-color-vermelho-tint: #e05256;
+}
+
+.ion-color-azul {
+  --ion-color-base: var(--ion-color-azul);
+  --ion-color-base-rgb: var(--ion-color-azul-rgb);
+  --ion-color-contrast: var(--ion-color-azul-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-azul-contrast-rgb);
+  --ion-color-shade: var(--ion-color-azul-shade);
+  --ion-color-tint: var(--ion-color-azul-tint);
+}
+
+.ion-color-vermelho {
+  --ion-color-base: var(--ion-color-vermelho);
+  --ion-color-base-rgb: var(--ion-color-vermelho-rgb);
+  --ion-color-contrast: var(--ion-color-vermelho-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-vermelho-contrast-rgb);
+  --ion-color-shade: var(--ion-color-vermelho-shade);
+  --ion-color-tint: var(--ion-color-vermelho-tint);
 }

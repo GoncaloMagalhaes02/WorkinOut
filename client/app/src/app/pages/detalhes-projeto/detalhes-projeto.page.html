@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <div id="header">
+      <ion-buttons>
+        <ion-back-button defaultHref="/tabs/tab3"></ion-back-button>
+        Voltar
+      </ion-buttons>
+      <img src="/assets/imgs/WorkinoutLogo.png" width="80" />
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="content-page" *ngIf="projeto; else loading">
+    <header>
+      <h1>{{ projeto.name }}</h1>
+      <p>{{ projeto.description }}</p>
+      <span>{{ projeto.status }}</span>
+    </header>
+
+    <section class="conteudo-projeto">
+      <ion-list>
+        <ion-item>
+          <ion-label
+            ><b>Data de Início:</b> {{ projeto.data_inicio | date:'dd/MM/yyyy'
+            }}</ion-label
+          >
+        </ion-item>
+        <ion-item>
+          <ion-label
+            ><b>Data de Fim:</b> {{ projeto.data_fim | date:'dd/MM/yyyy'
+            }}</ion-label
+          >
+        </ion-item>
+        <ion-item>
+          <ion-label
+            ><b>Peso Inícial:</b> {{ projeto.peso_inicial }} kg</ion-label
+          >
+        </ion-item>
+        <ion-item>
+          <ion-label><b>Peso Final:</b> {{ projeto.peso_final }} kg</ion-label>
+        </ion-item>
+      </ion-list>
+    </section>
+  </div>
+
+  <ng-template #loading>
+    <p>Carregando projeto...</p>
+  </ng-template>
+</ion-content>

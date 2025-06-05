@@ -8,46 +8,60 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-
-   <h2>{{ workoutPlanName }}</h2>
+  <h2>{{ workoutPlanName }}</h2>
   <p>{{ workoutPlanDescription }}</p>
 
   <ion-list *ngIf="exercises.length > 0">
-  <ion-item *ngFor="let item of exercises">
-    <ion-label class="label">
-      <h3>{{ item.exercise.name }}</h3>
-      <p>{{ item.exercise.description || 'Sem descrição' }}</p>
-      <ion-icon 
-          name="trash-outline" 
-           class="trash" 
-          (click)="deleteExerciseFromPlan(item.workoutPlanId, item.exerciseId)">
-      </ion-icon>
-    </ion-label>
-  </ion-item>
-</ion-list>
+    <ion-item *ngFor="let item of exercises">
+      <ion-label class="label">
+        <h3>{{ item.exercise.name }}</h3>
+        <p>{{ item.exercise.description || 'Sem descrição' }}</p>
+        <ion-icon
+          name="trash-outline"
+          class="trash"
+          (click)="deleteExerciseFromPlan(item.workoutPlanId, item.exerciseId)"
+        >
+        </ion-icon>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
-<ion-text color="medium" *ngIf="exercises.length === 0">
-  <p>Este plano ainda não tem exercícios associados.</p>
-</ion-text>
+  <ion-text color="medium" *ngIf="exercises.length === 0">
+    <p>Este plano ainda não tem exercícios associados.</p>
+  </ion-text>
 
-<ion-item class="ion-margin-top">
+  <ion-item class="ion-margin-top">
     <ion-label position="stacked">Adicionar exercício ao plano</ion-label>
-    <ion-select [(ngModel)]="selectedExerciseId" placeholder="Selecionar exercício">
-      <ion-select-option *ngFor="let ex of allExercises" [value]="ex.id">{{ ex.name }}</ion-select-option>
+    <ion-select
+      [(ngModel)]="selectedExerciseId"
+      placeholder="Selecionar exercício"
+    >
+      <ion-select-option *ngFor="let ex of allExercises" [value]="ex.id"
+        >{{ ex.name }}</ion-select-option
+      >
     </ion-select>
   </ion-item>
 
-
-  <ion-button expand="block" class="ion-margin-top" (click)="associateExercise()" [disabled]="!selectedExerciseId">
+  <ion-button
+    expand="block"
+    color="azul"
+    class="ion-margin-top"
+    (click)="associateExercise()"
+    [disabled]="!selectedExerciseId"
+  >
     Associar Exercício
   </ion-button>
 
-   <ion-button expand="full" routerLink="/criar-exercicio">
+  <ion-button expand="full" color="azul" routerLink="/criar-exercicio">
     Criar um Exercício
   </ion-button>
 
-  <ion-button expand="block" class="ion-margin-top" color="danger" (click)="deleteWorkoutPlan()">
+  <ion-button
+    expand="block"
+    class="ion-margin-top"
+    color="danger"
+    (click)="deleteWorkoutPlan()"
+  >
     Apagar Plano de Treino
   </ion-button>
-
 </ion-content>

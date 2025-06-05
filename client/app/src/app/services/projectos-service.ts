@@ -1,26 +1,24 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
-
-
 export class ProjectosService {
-    private apiUrl = 'http://localhost:3000/projects';
+  private apiUrl = 'http://localhost:3000/projects';
 
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-    getProjectsbyUserId(userId: number): Observable<any> {
-        return this.http.get(`${this.apiUrl}/getProjectsbyUser/${userId}`);
-    }
+  getProjectsbyUserId(userId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/getProjectsbyUser/${userId}`);
+  }
 
-    createProject(project: any): Observable<any> {
-        return this.http.post(`${this.apiUrl}/createProject`, project);
-    }
+  createProject(project: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/createProject`, project);
+  }
 
-    
-
+  getProjectsbyId(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/getProjectsbyID/${id}`);
+  }
 }

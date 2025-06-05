@@ -10,7 +10,10 @@
   <h1>Perfil</h1>
   <main>
     <section class="img-perfil">
-      <img [src]="utilizador.photo ? 'http://localhost:3000' + utilizador.photo : 'assets/imgs/defaultuser.png'" width="200">
+      <img
+        [src]="utilizador.photo ? 'http://localhost:3000' + utilizador.photo : 'assets/imgs/defaultuser.png'"
+        width="200"
+      />
     </section>
 
     <section *ngIf="utilizador" class="conteudo-perfil">
@@ -30,7 +33,7 @@
         <label>Peso</label>
         <p>{{utilizador.weight}}</p>
       </div>
-      <ion-button routerLink="/editperfil" expand="full"
+      <ion-button routerLink="/editperfil" color="azul" expand="full"
         >Editar Perfil</ion-button
       >
       <ion-button (click)="logout()" color="danger" expand="full"
