@@ -22,8 +22,12 @@
           type="text"
           placeholder="antoniomiguel@gmail.com"
           formControlName="email"
+          (ionBlur)="formularioRegister.get('email')?.markAsTouched()"
           required
         />
+        <p *ngIf="getError('email', 'pattern') && isTouchedOrDirty('email')">
+          Formato inválido — exemplo&#64;gmail.com
+        </p>
       </div>
       <div>
         <label for="pw">Palavra-passe</label>
@@ -34,8 +38,8 @@
           formControlName="password"
           required
         />
-         <label for="photo">Fotografia</label>
-          <input type="file" (change)="onFileSelected($event)" />
+        <label for="photo">Fotografia</label>
+        <input type="file" (change)="onFileSelected($event)" />
         <a>Esqueceu-se da palavra-passe?</a>
         <a routerLink="/login">Já tem conta? Iniciar Sessão!</a>
       </div>

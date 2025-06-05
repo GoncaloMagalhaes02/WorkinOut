@@ -8,12 +8,45 @@
 
 <ion-content [fullscreen]="true">
   <main>
+    <section class="section-projeto">
+      <h1>Projeto a decorrer</h1>
+
+      <ng-container *ngIf="projeto?.length > 0; else semProjetos">
+        <ion-card *ngFor="let p of projeto">
+          <ion-card-header>
+            <ion-card-title>{{ p.name }}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content class="content">
+            {{ p.description }}
+          </ion-card-content>
+
+          <ion-button
+            fill="clear"
+            color="azul"
+            [routerLink]="['/detalhes-projeto', p.id]"
+          >
+            Ver detalhes
+          </ion-button>
+        </ion-card>
+      </ng-container>
+
+      <ng-template #semProjetos>
+        <p>Nenhum projeto ativo no momento.</p>
+      </ng-template>
+
+      <ng-template #semProjetos>
+        <p>Não existe projeto ativo no momento.</p>
+      </ng-template>
+    </section>
     <h1>O que fazer</h1>
     <section id="conteudo">
       <div class="item-conteudo treinar" routerLink="/tabs/tab2">
         <h1>Treinar</h1>
       </div>
-      <div class="item-conteudo projeto" routerLink="/tabs/projetos"><h1>Projeto</h1></div>
+      <div class="item-conteudo projeto" routerLink="/tabs/projetos">
+        <h1>Projeto</h1>
+      </div>
       <div class="item-conteudo perfil" routerLink="/tabs/tab3">
         <h1>Perfil</h1>
       </div>

@@ -22,7 +22,13 @@ export class RegisterPage implements OnInit {
   ) {
     this.formularioRegister = this.fb.group({
       name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('^[A-Za-z]+@[A-Za-z]+\\.[A-Za-z]{2,}$'),
+        ],
+      ],
       password: ['', Validators.required],
     });
   }
@@ -54,18 +60,30 @@ export class RegisterPage implements OnInit {
         formData.append('photo', this.selectedFile);
       }
 
-      this.http.post('http://localhost:3000/users/register', formData).subscribe({
-        next: async (response) => {
-          console.log('Utilizador registado com sucesso', response);
-          await this.toastSuccess();
-          this.router.navigate(['/login']);
-        },
-        error: async (error) => {
-          console.error('Erro ao criar a conta', error);
-          await this.toastError();
-        },
-      });
+      this.http
+        .post('http://localhost:3000/users/register', formData)
+        .subscribe({
+          next: async (response) => {
+            console.log('Utilizador registado com sucesso', response);
+            await this.toastSuccess();
+            this.router.navigate(['/login']);
+          },
+          error: async (error) => {
+            console.error('Erro ao criar a conta', error);
+            await this.toastError();
+          },
+        });
     }
+  }
+
+  getError(controlName: string, errorType: string): boolean {
+    const control = this.formularioRegister.get(controlName);
+    return !!(control && control.hasError(errorType));
+  }
+
+  isTouchedOrDirty(controlName: string): boolean {
+    const control = this.formularioRegister.get(controlName);
+    return !!(control && (control.touched || control.dirty));
   }
 
   async toastSuccess() {

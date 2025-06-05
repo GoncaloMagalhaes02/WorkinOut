@@ -21,4 +21,8 @@ export class ProjectosService {
   getProjectsbyId(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/getProjectsbyID/${id}`);
   }
+
+  deleteProject(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/deleteProject/${id}`);
+  }
 }

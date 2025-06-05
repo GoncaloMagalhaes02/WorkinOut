@@ -33,7 +33,13 @@
         >
           Ver detalhes
         </ion-button>
-        <ion-button fill="clear" color="vermelho"> Eliminar </ion-button>
+        <ion-button
+          fill="clear"
+          color="vermelho"
+          (click)="deleteProject(projeto.id)"
+        >
+          Eliminar
+        </ion-button>
       </ion-card>
     </ng-container>
 
