@@ -19,7 +19,7 @@ const ProgressPhotosModel = db.define('ProgressPhotos', {
         type: DataTypes.INTEGER,
         allowNull: true,
     },
-    photo_url: {
+    photo: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -27,6 +27,14 @@ const ProgressPhotosModel = db.define('ProgressPhotos', {
         type: DataTypes.DATE,
         allowNull: false,
     },
+    semanaAtual: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    pesoAtual: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+    }
 }, {
     tableName: 'progress_photos',
     timestamps: true, // Adiciona createdAt e updatedAt

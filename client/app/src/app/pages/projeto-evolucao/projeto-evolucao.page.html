@@ -1,13 +1,79 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>projeto-evolucao</ion-title>
+    <div id="header">
+      <ion-buttons>
+        <ion-back-button defaultHref="/tabs/tab3"></ion-back-button>
+        Voltar
+      </ion-buttons>
+      <img src="/assets/imgs/WorkinoutLogo.png" width="80" />
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">projeto-evolucao</ion-title>
     </ion-toolbar>
   </ion-header>
+
+
+  <ion-title>
+    Nome do Projeto
+  </ion-title>
+
+<section class="section">
+<form (ngSubmit)="enviarForm()" #form="ngForm">
+  <ion-item>
+    <ion-label position="floating">Nº da semana a decorrer</ion-label>
+    <ion-input
+      type="number"
+      name="semanaAtual"
+      [(ngModel)]="semanaAtual"
+      required
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Peso atual em Kg</ion-label>
+    <ion-input
+      type="number"
+      name="pesoAtual"
+      [(ngModel)]="pesoAtual"
+      required
+    ></ion-input>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label position="stacked">Foto atual</ion-label>
+    <input
+      type="file"
+      (change)="onFileSelected($event)"
+      accept="image/*"
+      required
+    />
+  </ion-item>
+
+  <!-- Preview da imagem -->
+  <div *ngIf="imagePreview" style="text-align:center; margin: 15px 0;">
+    <img
+      [src]="imagePreview"
+      alt="Preview"
+      style="max-width: 200px; border-radius: 12px;"
+    />
+  </div>
+
+  <ion-button expand="full" type="submit" class="ion-margin-top" [disabled]="!form.form.valid || !selectedFile">
+    Enviar
+  </ion-button>
+</form>
+
+
+</section>
+
+
+
+
+
+
 </ion-content>

@@ -1,0 +1,1 @@
+import PostsModel from "../models/posts";

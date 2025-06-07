@@ -21,6 +21,8 @@ export class ProjectosService {
         return this.http.post(`${this.apiUrl}/createProject`, project);
     }
 
-    
+    createProjectEvolution(projectId: number, formData: FormData): Observable<any> {
+        return this.http.post(`${this.apiUrl}/createProjectEvolution/${projectId}`, formData);
+    }
 
 }
