@@ -1,4 +1,5 @@
 import ProjectModel from "../models/project.js";
+import ProgressPhotosModel from "../models/progressPhotos.js";
 
 export const createProject = async (req, res) => {
   try {
@@ -127,4 +128,49 @@ export const listProject = async (req, res) => {
     console.error("Erro ao buscar usuários:", error);
     res.status(500).json({ error: "Erro interno do servidor" });
   }
+}
+
+export const createProgressTrack = async (req, res) => {
+    try {
+        const { user_id, data_taken, semanaAtual, pesoAtual } = req.body;
+        const { project_id } = req.params;
+        const file = req.file; // Vem do multer
+
+        // Validar campos obrigatórios
+        if (!user_id || !project_id || !file || semanaAtual === undefined || pesoAtual === undefined) {
+            return res.status(400).json({ message: "Todos os campos são obrigatórios" });
+        }
+
+        // Data (pode vir do body ou ser a atual)
+        const finalDate = data_taken ? new Date(data_taken) : new Date();
+
+        // Validar data
+        if (finalDate > new Date()) {
+            return res.status(400).json({ message: "A data da foto não pode ser no futuro" });
+        }
+
+        // Verificar se o projeto existe
+        const project = await ProjectModel.findByPk(project_id);
+        if (!project) {
+            return res.status(404).json({ message: "Projeto não encontrado" });
+        }
+
+        // Caminho relativo da imagem salva
+        const photoPath = `/uploads/${file.filename}`;
+
+        // Criar novo registo
+        const newPhoto = await ProgressPhotosModel.create({
+            user_id,
+            project_id,
+            photo: photoPath,
+            data_taken: finalDate,
+            semanaAtual,
+            pesoAtual
+        });
+
+        res.status(201).json(newPhoto);
+    } catch (error) {
+        console.error("Error creating progress photo:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
 };

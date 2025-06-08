@@ -1,6 +1,7 @@
 import { Sequelize, DataTypes } from "sequelize";
 import db from "../config/db.js";
 import UserModel from "./user.js"; // Importa o modelo User
+import ProjectModel from "./project.js";
 
 
 
@@ -14,7 +15,11 @@ const ProgressPhotosModel = db.define('ProgressPhotos', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    photo_url: {
+    project_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+    },
+    photo: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -22,6 +27,14 @@ const ProgressPhotosModel = db.define('ProgressPhotos', {
         type: DataTypes.DATE,
         allowNull: false,
     },
+    semanaAtual: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    pesoAtual: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+    }
 }, {
     tableName: 'progress_photos',
     timestamps: true, // Adiciona createdAt e updatedAt
@@ -32,5 +45,12 @@ ProgressPhotosModel.belongsTo(UserModel, {
     foreignKey: 'user_id',
     as: 'user'
 });
+
+// Definindo o relacionamento entre ProgressPhotos e Project
+ProgressPhotosModel.belongsTo(ProjectModel, {
+    foreignKey: 'project_id',
+    as: 'project'
+});
+
 
 export default ProgressPhotosModel;

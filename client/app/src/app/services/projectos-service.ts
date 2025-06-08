@@ -21,6 +21,10 @@ export class ProjectosService {
   getProjectsbyId(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/getProjectsbyID/${id}`);
   }
+    
+  createProjectEvolution(projectId: number, formData: FormData): Observable<any> {
+        return this.http.post(`${this.apiUrl}/createProjectEvolution/${projectId}`, formData);
+    }
 
   deleteProject(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/deleteProject/${id}`);

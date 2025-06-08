@@ -30,38 +30,27 @@ const routes: Routes = [
   },
   {
     path: 'editperfil',
-    loadChildren: () =>
-      import('./pages/editarperfil/editperfil.module').then(
-        (m) => m.EditperfilPageModule
-      ),
+    loadChildren: () => import('./pages/editarperfil/editperfil.module').then( m => m.EditperfilPageModule)
   },
   {
     path: 'create-workout-plan',
-    loadChildren: () =>
-      import('./pages/create-workout-plan/create-workout-plan.module').then(
-        (m) => m.CreateWorkoutPlanPageModule
-      ),
+    loadChildren: () => import('./pages/create-workout-plan/create-workout-plan.module').then( m => m.CreateWorkoutPlanPageModule)
   },
   {
     path: 'criar-exercicio',
-    loadChildren: () =>
-      import('./pages/criar-exercicio/criar-exercicio.module').then(
-        (m) => m.CriarExercicioPageModule
-      ),
+    loadChildren: () => import('./pages/criar-exercicio/criar-exercicio.module').then( m => m.CriarExercicioPageModule)
   },
   {
     path: 'plano-detalhe-page/:id',
-    loadChildren: () =>
-      import('./pages/plano-detalhe-page/plano-detalhe-page.module').then(
-        (m) => m.PlanoDetalhePagePageModule
-      ),
+    loadChildren: () => import('./pages/plano-detalhe-page/plano-detalhe-page.module').then( m => m.PlanoDetalhePagePageModule)
   },
   {
     path: 'criar-projeto',
-    loadChildren: () =>
-      import('./pages/criar-projeto/criar-projeto.module').then(
-        (m) => m.CriarProjetoPageModule
-      ),
+    loadChildren: () => import('./pages/criar-projeto/criar-projeto.module').then( m => m.CriarProjetoPageModule)
+  },
+  {
+    path: 'projeto-evolucao',
+    loadChildren: () => import('./pages/projeto-evolucao/projeto-evolucao.module').then( m => m.ProjetoEvolucaoPageModule)
   },
   {
     path: 'detalhes-projeto/:id',
@@ -71,6 +60,9 @@ const routes: Routes = [
       ),
   },
 ];
+
+
+
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),

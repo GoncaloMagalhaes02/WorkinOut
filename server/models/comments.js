@@ -21,10 +21,6 @@ const CommentsModel = db.define('Comments', {
         type: DataTypes.TEXT,
         allowNull: false,
     },
-    date_commented: {
-        type: DataTypes.DATE,
-        allowNull: false,
-    },
 }, {
     tableName: 'comments',
     timestamps: true, // Adiciona createdAt e updatedAt
