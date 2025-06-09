@@ -8,7 +8,8 @@ export const createProject = async (req, res) => {
       description,
       data_inicio,
       data_fim,
-      user_id,
+      status = "Sem estado", // Default status
+      user_id,  
       peso_inicial,
       peso_final,
     } = req.body;
@@ -34,18 +35,13 @@ export const createProject = async (req, res) => {
         .json({ message: "Todos os campos são obrigatórios" });
     }
 
-    //a data nao pode ser inferior a data atual
-    if (new Date(data_inicio) >= new Date()) {
-      return res
-        .status(400)
-        .json({ message: "Data de início não pode ser anterior à data atual" });
-    }
 
     const newProject = await ProjectModel.create({
       name,
       description,
       data_inicio,
       data_fim,
+      status,
       user_id,
       peso_inicial,
       peso_final,
@@ -173,4 +169,29 @@ export const createProgressTrack = async (req, res) => {
         console.error("Error creating progress photo:", error);
         res.status(500).json({ message: "Internal server error" });
     }
+};
+
+export const updateStatusProject = async (req, res) => {
+  try {
+    const { projectId } = req.params;
+    const { status } = req.body;
+
+    // Validar status
+    if (!status) {
+      return res.status(400).json({ message: "Status é obrigatório" });
+    }
+
+    const project = await ProjectModel.findByPk(projectId);
+    if (!project) {
+      return res.status(404).json({ message: "Projeto não encontrado" });
+    }
+
+    project.status = status;
+    await project.save();
+
+    res.status(200).json(project);
+  } catch (error) {
+    console.error("Error updating project status:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 };

@@ -29,4 +29,9 @@ export class ProjectosService {
   deleteProject(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/deleteProject/${id}`);
   }
+
+  updateStatusProject(projectId: number, status: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/updateStatus/${projectId}`, { status });
+  }
+
 }

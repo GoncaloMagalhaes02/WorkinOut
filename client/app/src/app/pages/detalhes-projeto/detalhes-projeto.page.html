@@ -15,7 +15,7 @@
     <header>
       <h1>{{ projeto.name }}</h1>
       <p>{{ projeto.description }}</p>
-      <span>{{ projeto.status }}</span>
+      <span class="status">{{ projeto.status }}</span>
     </header>
 
     <section class="conteudo-projeto">
@@ -41,8 +41,29 @@
           <ion-label><b>Peso Final:</b> {{ projeto.peso_final }} kg</ion-label>
         </ion-item>
       </ion-list>
+
+     <ion-item>
+  <ion-select 
+    [(ngModel)]="projeto.status" 
+    interface="popover"
+    placeholder="Selecionar novo status">
+    <ion-select-option value="Sem estado">Sem estado</ion-select-option>
+    <ion-select-option value="Em andamento">Em andamento</ion-select-option>
+    <ion-select-option value="Concluído">Concluído</ion-select-option>
+    <ion-select-option value="Cancelado">Cancelado</ion-select-option>
+  </ion-select>
+</ion-item>
+  
+    </section>
+    <section class="acoes-projeto">
+      <ion-button expand="full" (click)="updateStatus(projeto.status)" color="azul">
+        Mudar Estado
+      </ion-button>
+       <ion-button expand="full" color="vermelho">Atualização</ion-button>
     </section>
   </div>
+
+ 
 
   <ng-template #loading>
     <p>Carregando projeto...</p>
