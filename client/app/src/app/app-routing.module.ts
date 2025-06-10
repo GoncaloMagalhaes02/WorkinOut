@@ -49,7 +49,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/criar-projeto/criar-projeto.module').then( m => m.CriarProjetoPageModule)
   },
   {
-    path: 'projeto-evolucao',
+    path: 'projeto-evolucao/:id',
     loadChildren: () => import('./pages/projeto-evolucao/projeto-evolucao.module').then( m => m.ProjetoEvolucaoPageModule)
   },
   {

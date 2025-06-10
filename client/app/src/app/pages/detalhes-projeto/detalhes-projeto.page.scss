@@ -15,3 +15,20 @@
 ion-button{
   color: white;
 }
+
+
+.cards{
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+ion-card-header{
+  padding: 10px
+}
+
+ion-card-title{
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--ion-color-vermelho);
+}

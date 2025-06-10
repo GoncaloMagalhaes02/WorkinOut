@@ -23,7 +23,7 @@ export class ProjectosService {
   }
     
   createProjectEvolution(projectId: number, formData: FormData): Observable<any> {
-        return this.http.post(`${this.apiUrl}/createProjectEvolution/${projectId}`, formData);
+        return this.http.post(`${this.apiUrl}/createProgressTrack/${projectId}`, formData);
     }
 
   deleteProject(id: number): Observable<any> {
@@ -32,6 +32,10 @@ export class ProjectosService {
 
   updateStatusProject(projectId: number, status: string): Observable<any> {
     return this.http.put(`${this.apiUrl}/updateStatus/${projectId}`, { status });
+  }
+
+  getProjectEvolutions(projectId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/getProgressByProject/${projectId}`);
   }
 
 }

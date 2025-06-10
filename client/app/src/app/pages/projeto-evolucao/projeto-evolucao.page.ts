@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { GetprofileService } from 'src/services/getprofile.service';
 import { ProjectosService } from 'src/app/services/projectos-service';
 import { ToastController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-projeto-evolucao',
@@ -17,17 +18,31 @@ export class ProjetoEvolucaoPage implements OnInit {
   imagePreview: string | ArrayBuffer | null = null;
 
   userId!: number;
-  projectId: number = 1; // <-- Troca este valor conforme necessário
+  projectId!: number; 
   data_taken!: Date;
+
+  projectEvolutions: any[] = []; // Array para armazenar as evoluções do projeto
 
   constructor(
     private http: HttpClient,
     private getProfileService: GetprofileService,
     private projectService: ProjectosService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {}
+ ngOnInit() {
+  const id = this.route.snapshot.paramMap.get('id');
+
+  if (!id || isNaN(+id)) {
+    console.error('projectId inválido');
+    this.presentToastError("Projeto não encontrado");
+    return;
+  }
+
+  this.projectId = +id;
+}
+
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
@@ -58,13 +73,31 @@ export class ProjetoEvolucaoPage implements OnInit {
         next: (res) => {
           console.log('Foto enviada com sucesso', res);
           // Opcional: redirecionar, mostrar toast, etc.
+          this.presentToastSuccess("Evolução do projeto atualizada com sucesso!");
+          //navigate to tabs/projects
+           setTimeout(() => {
+            window.location.href = '/tabs/projetos';
+          }, 1000);
         },
         error: (err) => {
           console.error('Erro ao enviar foto:', err);
+          // Verifica se o erro é do servidor e exibe a mensagem de erro
+          this.presentToastError(err.error.message || "Erro ao atualizar o projeto. Tente novamente.");
         },
       });
     });
   }
+
+atualizarProjeto() {
+  if (this.selectedFile && this.semanaAtual && this.pesoAtual) {
+    this.enviarForm(); // reaproveita a lógica existente
+  } else {
+    this.presentToastError("Preenche todos os campos e seleciona uma imagem.");
+  }
+}
+
+
+
 
   async presentToastSuccess(message: string) {
     const toast = await this.toastController.create({

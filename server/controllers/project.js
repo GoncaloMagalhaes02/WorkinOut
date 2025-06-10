@@ -128,17 +128,17 @@ export const listProject = async (req, res) => {
 
 export const createProgressTrack = async (req, res) => {
     try {
-        const { user_id, data_taken, semanaAtual, pesoAtual } = req.body;
+        const { user_id, date_taken, semanaAtual, pesoAtual } = req.body;
         const { project_id } = req.params;
         const file = req.file; // Vem do multer
 
         // Validar campos obrigatórios
-        if (!user_id || !project_id || !file || semanaAtual === undefined || pesoAtual === undefined) {
+        if (!user_id || !project_id || semanaAtual === undefined || pesoAtual === undefined) {
             return res.status(400).json({ message: "Todos os campos são obrigatórios" });
         }
 
         // Data (pode vir do body ou ser a atual)
-        const finalDate = data_taken ? new Date(data_taken) : new Date();
+        const finalDate = date_taken ? new Date(date_taken) : new Date();
 
         // Validar data
         if (finalDate > new Date()) {
@@ -159,7 +159,7 @@ export const createProgressTrack = async (req, res) => {
             user_id,
             project_id,
             photo: photoPath,
-            data_taken: finalDate,
+            date_taken: finalDate,
             semanaAtual,
             pesoAtual
         });
@@ -195,3 +195,23 @@ export const updateStatusProject = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+export const getProgressByProject = async (req, res) => {
+  try {
+    const { projectId } = req.params;
+
+    const progressPhotos = await ProgressPhotosModel.findAll({
+      where: { project_id: projectId },
+      order: [['date_taken', 'DESC']], // Ordenar por data
+    });
+
+    if (progressPhotos.length === 0) {
+      return res.status(404).json({ message: "Nenhuma atualização de progresso encontrada para este projeto" });
+    }
+
+    res.status(200).json(progressPhotos);
+  } catch (error) {
+    console.error("Error fetching progress photos:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}

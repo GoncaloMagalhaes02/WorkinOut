@@ -1,5 +1,5 @@
 import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import path, { dirname, join } from 'path';
 import multer from 'multer';
 import fs from 'fs';
 
@@ -15,7 +15,7 @@ if (!fs.existsSync(uploadPath)) {
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, uploadPath); // Caminho absoluto
+    cb(null, uploadPath);
   },
   filename: function (req, file, cb) {
     const ext = path.extname(file.originalname);

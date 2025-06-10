@@ -2,7 +2,7 @@
   <ion-toolbar>
     <div id="header">
       <ion-buttons>
-        <ion-back-button defaultHref="/tabs/tab3"></ion-back-button>
+        <ion-back-button defaultHref="/tabs/projetos"></ion-back-button>
         Voltar
       </ion-buttons>
       <img src="/assets/imgs/WorkinoutLogo.png" width="80" />
@@ -59,10 +59,31 @@
       <ion-button expand="full" (click)="updateStatus(projeto.status)" color="azul">
         Mudar Estado
       </ion-button>
-       <ion-button expand="full" color="vermelho">Atualização</ion-button>
+       <ion-button expand="full" class="atualizacao" color="danger" [routerLink]="['/projeto-evolucao', projeto.id]">Atualização</ion-button>
     </section>
   </div>
 
+
+  <section class="cards" *ngIf="projectEvolutions.length > 0">
+    <ion-card *ngFor="let evolucao of projectEvolutions">
+      <ion-card-header>
+        <ion-card-title>Progresso</ion-card-title>
+        <ion-card-subtitle>{{ evolucao.date_taken | date:'dd/MM/yyyy' }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Semana Atual:</strong> {{ evolucao.semanaAtual }}</p>
+        <p><strong>Peso Atual:</strong> {{ evolucao.pesoAtual }} kg</p>
+        <img 
+          [src]="'http://localhost:3000' + evolucao.photo" 
+          alt="Foto de evolução"
+          style="max-width: 100%; border-radius: 8px;" />
+      </ion-card-content>
+    </ion-card>
+  </section>
+
+  <ion-text color="medium" *ngIf="projectEvolutions.length === 0">
+    <p style="text-align:center;">Sem evoluções registadas ainda.</p>
+  </ion-text>
  
 
   <ng-template #loading>
